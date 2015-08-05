@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -37,7 +40,7 @@ public class MusicAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView albumTextView;
+        ImageView albumTextView;
         TextView artistTextView;
         TextView songTextView;
     }
@@ -53,7 +56,7 @@ public class MusicAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
 
-            viewHolder.albumTextView = (TextView) view.findViewById(R.id.item_music_album);
+            viewHolder.albumTextView = (ImageView) view.findViewById(R.id.item_music_album);
             viewHolder.artistTextView = (TextView) view.findViewById(R.id.item_music_artist);
             viewHolder.songTextView = (TextView) view.findViewById(R.id.item_music_song);
 
@@ -66,7 +69,10 @@ public class MusicAdapter extends BaseAdapter {
 
         Music music = getItem(position);
 
-        viewHolder.albumTextView.setText(music.getAlbumName());
+        Picasso
+                .with(contextWeakReference.get())
+                .load("http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg")
+                .into(viewHolder.albumTextView);
         viewHolder.artistTextView.setText(music.getArtistName());
         viewHolder.songTextView.setText(music.getSongName());
 
